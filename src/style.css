@@ -1,0 +1,67 @@
+:root {
+    background-color: #EB5E55;
+}
+
+h1 {
+    text-align: center;
+    color: #FDF0D5;
+    background-color: #EB5E55;
+}
+
+#projectarea {
+    background-color: #AAC5BD;
+    color: #D81E5B;
+    flex-grow: 1;
+    min-width: 100px;
+    text-align: center;
+    font-size: x-large;
+}
+
+#taskarea {
+    background-color: #C6D8D3;
+    color: #D81E5B;
+    flex-grow: 3;
+    text-align: center;
+    font-size: x-large;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    min-height: 500px;
+    box-shadow: 0px 0px 5px 0px #888;
+    position: relative;
+}
+
+ul {
+    text-align: left;
+    font-size: large;
+    list-style: none;
+}
+
+ul li:before{
+    content: '+';
+    padding-right: 5px;
+}
+
+#main:before, #main:after {
+    content: "";
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+  #main:before {
+    background: #AAC5BD;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    left: -5px;
+    top: 4px;
+    transform: rotate(-2.5deg);
+  }
+  #main:after {
+    background: #AAC5BD;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    right: -3px;
+    top: 2px;
+    transform: rotate(2deg);
+  }
