@@ -30,6 +30,7 @@ function tasklist() {
 };
 
 body.appendChild(title());
+
 const div = document.createElement('div');
 div.setAttribute('id', 'main');
 body.appendChild(div);
