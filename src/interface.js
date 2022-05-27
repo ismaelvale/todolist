@@ -1,7 +1,12 @@
+window.addEventListener('load', () => {
+    todos = JSON.parse(localStorage.getItem('todos')) || [];
+});
+
+
 const body = document.querySelector('body');
 
 
-function title() {
+/*function title() {
     const top = document.createElement('h1');
     top.classList.add('title');
     top.innerText = 'Do It All: Your To Do List';
@@ -12,8 +17,9 @@ function projects() {
     const projectArea = document.createElement('div');
     projectArea.setAttribute('id', 'projectarea');
     projectArea.innerText = 'Projects';
-    const projects = document.createElement('div');
-    projects.setAttribute('projectlist', 'id');
+    const projects = document.createElement('ul');
+    projects.setAttribute('id', 'projectlist');
+    projects.innerHTML = '<li> Click here to add new projects</li>'
     projectArea.appendChild(projects);
     return projectArea;
 };
@@ -23,7 +29,7 @@ function tasklist() {
     taskArea.setAttribute('id', 'taskarea');
     taskArea.innerText = 'Your Tasks';
     const tasks = document.createElement('ul');
-    tasks.classList.add('tasks');
+    tasks.setAttribute('id', 'tasklist');
     tasks.innerHTML = '<li> Click here to add your task</li>'
     taskArea.appendChild(tasks);
     return taskArea;
@@ -37,4 +43,5 @@ body.appendChild(div);
 div.appendChild(projects());
 div.appendChild(tasklist());
 
-    export default title();
+    export default title();*/
+    
