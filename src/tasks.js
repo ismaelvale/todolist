@@ -1,3 +1,8 @@
+function createTodo() {
+   
+}
+
+
 /*function addTask() {
     const task = {
         title,
@@ -13,6 +18,4 @@
         listItem.classList.add('tasks');
         taskList.appendChild(listItem);
     });
-}
-
-export default addTask();*/
+}*/

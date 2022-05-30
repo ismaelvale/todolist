@@ -1,47 +1,86 @@
-window.addEventListener('load', () => {
-    todos = JSON.parse(localStorage.getItem('todos')) || [];
-});
 
+function functionality() {
+    window.addEventListener('load', () => {
+        const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-const body = document.querySelector('body');
+        const nameInput = document.getElementById('name');
+        const newTodoForm = document.querySelector('#new-todo-form');
 
+        const username = localStorage.getItem('username') || '';
 
-/*function title() {
-    const top = document.createElement('h1');
-    top.classList.add('title');
-    top.innerText = 'Do It All: Your To Do List';
-    return top;
-    };
+        nameInput.value = username;
 
-function projects() {
-    const projectArea = document.createElement('div');
-    projectArea.setAttribute('id', 'projectarea');
-    projectArea.innerText = 'Projects';
-    const projects = document.createElement('ul');
-    projects.setAttribute('id', 'projectlist');
-    projects.innerHTML = '<li> Click here to add new projects</li>'
-    projectArea.appendChild(projects);
-    return projectArea;
+        nameInput.addEventListener('change', e => {
+            localStorage.setItem('username', e.target.value);
+        })
+
+        newTodoForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const todo = {
+                content: e.target.elements.content.value,
+                category: e.target.elements.category.value,
+                done: false,
+                CreatedAt: new Date().getTime()
+            }
+
+            todos.push(todo);
+            localStorage.setItem('todos',JSON.stringify(todos));
+            e.target.reset();
+            displayTodos();
+        })
+
+        displayTodos();
+    });
+    
+    function displayTodos() {
+        const todoList = document.querySelector('#todo-list');
+        todoList.innerHTML = '';
+ 
+        todos.forEach(todo => {
+            const todoItem = document.createElement('div');
+            todoItem.classList.add('todo-item');
+
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+            const span = document.createElement('span');
+            const content = document.createElement('div');
+            content.classList.add('todo-content');
+            const actions = document.createElement('div');
+            const editBtn = document.createElement('button');
+            const deleteBtn = document.createElement('button');
+
+            input.type = 'checkbox';
+            input.checked = todo.done;
+            span.classList.add('bubble');
+
+            if(todo.category == personal) {
+                span.classList.add('personal')
+            } else {
+                span.classList.add('business')
+            };
+
+            content.classList.add('todo-content');  
+            actions.classList.add('actions');
+            editBtn.classList.add('edit');
+            deleteBtn.classList.add('delete');
+
+            content.innerHTML = `<input type="text" value= ${todo.content} readonly/>`
+            editBtn.innerHTML = 'Edit';
+            deleteBtn.innerHTML = 'Delete';
+
+            label.appendChild(input);
+            label.appendChild(span);
+            actions.appendChild(editBtn);
+            actions.appendChild(deleteBtn);
+
+            todoItem.appendChild(label);
+            todoItem.appendChild(content);
+            todoItem.appendChild(actions);
+
+            todoList.appendChild(todoItem);
+        });
+    }
 };
 
-function tasklist() {
-    const taskArea = document.createElement('div');
-    taskArea.setAttribute('id', 'taskarea');
-    taskArea.innerText = 'Your Tasks';
-    const tasks = document.createElement('ul');
-    tasks.setAttribute('id', 'tasklist');
-    tasks.innerHTML = '<li> Click here to add your task</li>'
-    taskArea.appendChild(tasks);
-    return taskArea;
-};
-
-body.appendChild(title());
-
-const div = document.createElement('div');
-div.setAttribute('id', 'main');
-body.appendChild(div);
-div.appendChild(projects());
-div.appendChild(tasklist());
-
-    export default title();*/
+export default functionality();
     

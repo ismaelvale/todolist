@@ -1,8 +1,5 @@
-import title from './interface';
-import addProject from './projects';
-import addTask from './tasks';
+import functionality from './interface';
 import './style.css';
 
-title;
-addProject;
-addTask;
+functionality;
+
