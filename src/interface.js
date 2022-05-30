@@ -1,7 +1,7 @@
 
 function functionality() {
     window.addEventListener('load', () => {
-        const todos = JSON.parse(localStorage.getItem('todos')) || [];
+        window.todos = JSON.parse(localStorage.getItem('todos')) || [];
 
         const nameInput = document.getElementById('name');
         const newTodoForm = document.querySelector('#new-todo-form');
@@ -33,7 +33,7 @@ function functionality() {
     });
     
     function displayTodos() {
-        const todoList = document.querySelector('#todo-list');
+        const todoList = document.querySelector('.todo-list');
         todoList.innerHTML = '';
  
         todos.forEach(todo => {
@@ -53,7 +53,7 @@ function functionality() {
             input.checked = todo.done;
             span.classList.add('bubble');
 
-            if(todo.category == personal) {
+            if(todo.category == 'personal') {
                 span.classList.add('personal')
             } else {
                 span.classList.add('business')
