@@ -1,7 +1,9 @@
+import Task from "./tasks";
+import TaskList from "./tasklist";
 
 function functionality() {
     window.addEventListener('load', () => {
-        window.todos = JSON.parse(localStorage.getItem('todos')) || [];
+        window.taskList = TaskList.fromObject(JSON.parse(localStorage.getItem('taskList'))) || new TaskList();
 
         const nameInput = document.getElementById('name');
         const newTodoForm = document.querySelector('#new-todo-form');
@@ -16,15 +18,15 @@ function functionality() {
 
         newTodoForm.addEventListener('submit', e => {
             e.preventDefault();
-            const todo = {
-                content: e.target.elements.content.value,
-                category: e.target.elements.category.value,
-                done: false,
-                CreatedAt: new Date().getTime()
-            }
+            const task = new Task(
+                e.target.elements.content.value,
+                e.target.elements.category.value,
+                false,
+                new Date().getTime()
+            )
 
-            todos.push(todo);
-            localStorage.setItem('todos',JSON.stringify(todos));
+            taskList.add(task);
+            localStorage.setItem('taskList',JSON.stringify(taskList));
             e.target.reset();
             displayTodos();
         })
@@ -36,7 +38,7 @@ function functionality() {
         const todoList = document.querySelector('.todo-list');
         todoList.innerHTML = '';
  
-        todos.forEach(todo => {
+        taskList.tasks.forEach(task => {
             const todoItem = document.createElement('div');
             todoItem.classList.add('todo-item');
 
@@ -50,10 +52,10 @@ function functionality() {
             const deleteBtn = document.createElement('button');
 
             input.type = 'checkbox';
-            input.checked = todo.done;
+            input.checked = task.done;
             span.classList.add('bubble');
 
-            if(todo.category == 'personal') {
+            if(task.category == 'personal') {
                 span.classList.add('personal')
             } else {
                 span.classList.add('business')
@@ -64,7 +66,7 @@ function functionality() {
             editBtn.classList.add('edit');
             deleteBtn.classList.add('delete');
 
-            content.innerHTML = `<input type="text" value= ${todo.content} readonly/>`
+            content.innerHTML = `<input type="text" value= ${task.content} readonly/>`
             editBtn.innerHTML = 'Edit';
             deleteBtn.innerHTML = 'Delete';
 

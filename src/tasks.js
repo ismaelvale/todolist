@@ -1,7 +1,22 @@
-function createTodo() {
-   
-}
+import { v4 as uuidv4 } from 'uuid';
 
+export default class Task {
+    content; 
+    category; 
+    done;
+    createdAt;
+    id;
+    constructor(content, category, done, createdAt) {
+        this.content = content;
+        this.category = category;
+        this.done = done;
+        this.createdAt = createdAt;
+        this.id = uuidv4();
+    }
+    static fromObject(obj) {
+        return Object.assign(new Task, obj);
+      }
+}
 
 /*function addTask() {
     const task = {
