@@ -2,12 +2,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default class Task {
     content; 
+    date;
     category; 
     done;
     createdAt;
     id;
-    constructor(content, category, done, createdAt) {
+    constructor(content, date, category, done, createdAt) {
         this.content = content;
+        this.date = date;
         this.category = category;
         this.done = done;
         this.createdAt = createdAt;

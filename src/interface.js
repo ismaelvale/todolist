@@ -1,5 +1,6 @@
 import Task from "./tasks";
 import TaskList from "./tasklist";
+import Projects from "./projects";
 
 function functionality() {
     window.addEventListener('load', () => {
@@ -20,6 +21,7 @@ function functionality() {
             e.preventDefault();
             const task = new Task(
                 e.target.elements.content.value,
+                e.target.elements.date.value,
                 e.target.elements.category.value,
                 false,
                 new Date().getTime()
@@ -37,16 +39,25 @@ function functionality() {
     function displayTodos() {
         const todoList = document.querySelector('.todo-list');
         todoList.innerHTML = '';
+        const personalList = document.createElement('div');
+        const businessList = document.createElement('div');
+        const otherList = document.createElement('div');
+        personalList.classList.add('personal-list');
+        businessList.classList.add('business-list');
+        otherList.classList.add('other-list');
+        personalList.innerHTML = '<h3>Personal Tasks</h3>';
+        businessList.innerHTML = '<h3>Business Tasks</h3>';
+        otherList.innerHTML = '<h3>Other Tasks</h3>';
  
         taskList.tasks.forEach(task => {
             const todoItem = document.createElement('div');
             todoItem.classList.add('todo-item');
-
             const label = document.createElement('label');
             const input = document.createElement('input');
             const span = document.createElement('span');
             const content = document.createElement('div');
             content.classList.add('todo-content');
+            const date = document.createElement('span');
             const actions = document.createElement('div');
             const editBtn = document.createElement('button');
             const deleteBtn = document.createElement('button');
@@ -66,7 +77,8 @@ function functionality() {
             editBtn.classList.add('edit');
             deleteBtn.classList.add('delete');
 
-            content.innerHTML = `<input type="text" value= ${task.content} readonly/>`
+            content.innerHTML = `<input type="text" value= '${task.content}' readonly/>`
+            date.textContent = task.date;
             editBtn.innerHTML = 'Edit';
             deleteBtn.innerHTML = 'Delete';
 
@@ -79,7 +91,18 @@ function functionality() {
             todoItem.appendChild(content);
             todoItem.appendChild(actions);
 
-            todoList.appendChild(todoItem);
+            todoList.appendChild(personalList);
+            todoList.appendChild(businessList);
+            todoList.appendChild(otherList);
+            content.appendChild(date);
+
+            if(task.category == 'personal') {
+                personalList.appendChild(todoItem);
+            } else if(task.category == 'business') {
+                businessList.appendChild(todoItem);
+            } else {
+                otherList.appendChild(todoItem);
+            };
 
             if (task.done) {
                 todoItem.classList.add('done');

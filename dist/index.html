@@ -7,19 +7,18 @@
     <title>To Do List</title>
 </head>
 <body>
+    <section class="greeting">
+        <h2 class="title">
+            What's Up, <input type="text" id="name" placeholder="Name here">
+        </h2>
+    </section>
     <main class="app">
-
-        <section class="greeting">
-            <h2 class="title">
-                What's Up, <input type="text" id="name" placeholder="Name here">
-            </h2>
-        </section>
-
         <section class="create-todo">
             <h3>CREATE A TODO</h3>
             <form id="new-todo-form">
                 <h4>What's on your list?</h4>
-                <input type="text" name="content" id="content" placeholder="e.g. make a video">
+                <input type="text" name="content" id="content" placeholder="e.g. make a video"/>
+                <input type="date" name="date" id="date"/>
                 <h4>Project</h4>
                 <div class="options">
                     <label >
@@ -32,6 +31,11 @@
                         <span class="bubble personal"></span>
                         <div>Personal</div>
                     </label>
+                    <label >
+                        <input type="radio" name="category" id="category3" value="Other"/>
+                        <span class="bubble other"></span>
+                        <div>Other</div>
+                    </label>
                 </div>
 
                 <input type="submit" value="Add todo"/>
@@ -39,7 +43,7 @@
         </section>
 
         <section class="todo-list">
-            <h3>TODO List</h3>
+            <h3>TO DO List</h3>
             <!-- <div class="todo-list" id="todo-list">
                 <div class="todo-item">
                     <label>
@@ -72,8 +76,9 @@
                             <button class="delete">Delete</button>
                         </div>
                     </div>
-                </div> -->
-            </div>
+                </div> 
+            </div> -->
+
         </section>
     </main>
     <script src="./main.js"></script>
