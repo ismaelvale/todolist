@@ -80,6 +80,40 @@ function functionality() {
             todoItem.appendChild(actions);
 
             todoList.appendChild(todoItem);
+
+            if (task.done) {
+                todoItem.classList.add('done');
+            };
+
+            input.addEventListener('click', e => {
+                task.done = e.target.checked;
+                localStorage.setItem('taskList',JSON.stringify(taskList));
+
+                if (task.done) {
+                    todoItem.classList.add('done');
+                } else {
+                    todoItem.classList.remove('done');
+                };
+                displayTodos();
+            });
+
+            editBtn.addEventListener('click', e => {
+                const input = content.querySelector('input');
+                input.removeAttribute('readonly');
+                input.focus();
+                input.addEventListener('blur', e => {
+                    input.setAttribute('readonly', 'true');
+                    task.content = e.target.value;
+                    localStorage.setItem('taskList',JSON.stringify(taskList));
+                    displayTodos();
+                })
+            });
+
+            deleteBtn.addEventListener('click', e => {
+                taskList.delete(task.id);
+                localStorage.setItem('taskList',JSON.stringify(taskList));
+                displayTodos();
+            });
         });
     }
 };
