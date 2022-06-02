@@ -18,7 +18,7 @@
             <form id="new-todo-form">
                 <h4>What's on your list?</h4>
                 <div class="input-content">
-                    <input type="text" name="content" id="content" placeholder="e.g. make a video"/>
+                    <input type="text" name="content" id="content" placeholder="e.g. make a video" required/>
                     <input type="date" class="form-control" name="date" id="date"/>
                 </div>
                 <h4>Project</h4>
@@ -33,10 +33,10 @@
                         <span class="bubble personal"></span>
                         <div>Personal</div>
                     </label>
-                    <label >
+                    <label>
                         <input type="radio" name="category" id="category3" value="Other"/>
                         <span class="bubble other"></span>
-                        <div>Other</div>
+                        <input type="text" name="new-category" id="new-category" value="Add Category">
                     </label>
                 </div>
 

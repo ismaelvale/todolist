@@ -122,6 +122,13 @@ h4 {
     position: absolute;
 }
 
+#new-category {
+    text-align: center;
+    color: var(--dark);
+    font-size: 1.125rem;
+    margin-top: 1rem;
+}
+
 .form-control input {
     display: block;
     width: 100%;

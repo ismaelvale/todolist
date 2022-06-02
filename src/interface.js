@@ -17,6 +17,22 @@ function functionality() {
             localStorage.setItem('username', e.target.value);
         })
 
+        const otherCat = document.getElementById('new-category');
+        const otherCatBubble = document.getElementById('category3');
+        otherCat.addEventListener('click', e => {
+            otherCat.focus();
+            otherCat.removeAttribute('value');
+        })
+        otherCat.addEventListener('blur', e => {
+            otherCat.setAttribute('value', `${e.target.value}`);
+            otherCatBubble.setAttribute('value', `${e.target.value}`);
+            if(e.target.value == '') {
+                alert('Please add category');
+            } else {
+                return
+            }
+        })
+
         newTodoForm.addEventListener('submit', e => {
             e.preventDefault();
             const task = new Task(
@@ -41,13 +57,10 @@ function functionality() {
         todoList.innerHTML = '';
         const personalList = document.createElement('div');
         const businessList = document.createElement('div');
-        const otherList = document.createElement('div');
         personalList.classList.add('personal-list');
         businessList.classList.add('business-list');
-        otherList.classList.add('other-list');
         personalList.innerHTML = '<h3>Personal Tasks</h3>';
         businessList.innerHTML = '<h3>Business Tasks</h3>';
-        otherList.innerHTML = '<h3>Other Tasks</h3>';
  
         taskList.tasks.forEach(task => {
             const todoItem = document.createElement('div');
@@ -67,9 +80,11 @@ function functionality() {
             span.classList.add('bubble');
 
             if(task.category == 'personal') {
-                span.classList.add('personal')
+                span.classList.add('personal');
+            } else if (task.category == 'business') {
+                span.classList.add('business');
             } else {
-                span.classList.add('business')
+                span.classList.add('other');
             };
 
             content.classList.add('todo-content');  
@@ -91,17 +106,20 @@ function functionality() {
             todoItem.appendChild(content);
             todoItem.appendChild(actions);
 
-            todoList.appendChild(personalList);
-            todoList.appendChild(businessList);
-            todoList.appendChild(otherList);
             content.appendChild(date);
 
             if(task.category == 'personal') {
                 personalList.appendChild(todoItem);
+                todoList.appendChild(personalList);
             } else if(task.category == 'business') {
                 businessList.appendChild(todoItem);
+                todoList.appendChild(businessList);
             } else {
-                otherList.appendChild(todoItem);
+                const catList = document.createElement('div');
+                catList.classList.add('other-list');
+                catList.innerHTML = `<h3>${task.category} Tasks</h3>`;
+                catList.appendChild(todoItem);
+                todoList.appendChild(catList);
             };
 
             if (task.done) {
