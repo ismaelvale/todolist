@@ -101,8 +101,7 @@ h4 {
 }
 
 .input-content {
-    display: grid;
-    grid-template-columns: 3fr 1fr; 
+    display: flex;
     width: 100%;
     font-size: 1.125rem;
     padding: 1rem 1.5rem;
@@ -143,9 +142,9 @@ h4 {
 }
 
 .create-todo .options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1rem;
+    display: flex;
+    justify-content: space-around;
+    column-gap: 1rem;
     margin-bottom: 1.5rem;
 }
 
@@ -153,7 +152,8 @@ h4 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 0;
     padding: 1.5rem;
     background-color: #FFF;
     border-radius: 0.5rem;
@@ -256,6 +256,11 @@ input:checked ~ .bubble::after {
     font-size: 1.125rem;
 }
 
+.todo-item .todo-content span {
+    color: var(--dark);
+    font-size: 1.125rem;
+}
+
 .todo-item .actions {
     display: flex;
     align-items: center;
@@ -286,4 +291,58 @@ input:checked ~ .bubble::after {
 .todo-item.done .todo-content input {
     text-decoration: line-through;
     color: var(--gray);
+}
+
+@media screen and (max-width:350px) {
+    :root {
+        font-size: xx-small;
+        width: 90%;
+    }
+    .bubble {
+        width: 15px;
+        height: 15px;
+    }
+    .todo-item .todo-content input {
+        font-size: 1.17rem;
+    }
+    .create-todo .options label {
+        padding: 1rem;
+    }
+    .create-todo input#content {
+        width: 75%;
+    }
+}
+
+@media screen and (min-width:350px) and (max-width:500px) {
+    :root {
+        font-size: x-small;
+        width: 95%;
+    }
+    .bubble {
+        width: 15px;
+        height: 15px;
+    }
+    .create-todo input#content {
+        width: 85%;
+    }
+} 
+
+@media screen and (min-width:2400px) {
+    :root {
+        font-size: 32pt;
+        width: 102%;
+    }
+    .create-todo input[type="text"] {
+        font-size: 1.125rem;
+    }
+    .bubble {
+        width: 40px;
+        height: 40px;
+        border: 4px solid var(--business);
+    }
+    .todo-item .actions button {
+        display: block;
+        padding: 1rem;
+        font-size: 1.125rem; 
+    }
 }
