@@ -19,20 +19,20 @@
 }
 
 :root {
-    --primary: #ea40a4;
-    --business: #3A82EE;
-    --other: #4cee3a;
+    --primary: #e38c8a;
+    --business: #7686a6;
+    --other: #ffb7ad;
     --personal: var(--primary);
-    --gray: #888;
-    --light: #EEE;
-    --dark: #313154;
+    --gray: #2f2c40;
+    --light: #7686a6;
+    --dark: #131017;
     --danger: #FF5b57;
 
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
-    --business-glow: 0px 0px 4px rgba(58, 130, 238, 0.75);
-    --personal-glow: 0px 0px 4px rgba(234, 64, 164, 0.75);
-    --other-glow: 0px 0px 4px rgba(76, 238, 58, 0.75);
+    --business-glow: 0px 0px 4px rgb(118, 134, 166, 0.75);
+    --personal-glow: 0px 0px 4px rgb(227, 140, 138, 0.75);
+    --other-glow: 0px 0px 4px rgb(255, 183, 173, 0.75);
 }
 
 * {
@@ -182,6 +182,11 @@ input[type="checkbox"] {
     box-shadow: var(--personal-glow);
 }
 
+.bubble.other {
+    border-color: var(--other);
+    box-shadow: var(--other-glow);
+}
+
 .bubble::after {
     content: "";
     display: block;
@@ -197,6 +202,11 @@ input[type="checkbox"] {
 .bubble.personal::after {
     background-color: var(--personal);
     box-shadow: var(--personal-glow);
+}
+
+.bubble.other::after {
+    background-color: var(--other);
+    box-shadow: var(--other-glow);
 }
 
 input:checked ~ .bubble::after {
