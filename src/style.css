@@ -303,6 +303,27 @@ input:checked ~ .bubble::after {
     color: var(--gray);
 }
 
+.footer {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  a:hover {
+      opacity: 0.75;
+  }
+
 @media screen and (max-width:350px) {
     :root {
         font-size: xx-small;
